@@ -1,9 +1,12 @@
 package com.vidaplena.vidaplena.model.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,7 +18,17 @@ public class Especialidade {
 	private Long id_especialidade;
 	private String nome_especialidade;
 	
+	@OneToMany
+	//necessário que esse atributo seja uma coleção
+	private List<Medico> medicos;
+	
 	public Especialidade() {}
+
+	public Especialidade(Long id_especialidade, String nome_especialidade) {
+		super();
+		this.id_especialidade = id_especialidade;
+		this.nome_especialidade = nome_especialidade;
+	}
 
 	public Especialidade(String nome_especialidade) {
 		super();

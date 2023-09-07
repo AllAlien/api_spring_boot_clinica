@@ -1,11 +1,12 @@
 package com.vidaplena.vidaplena.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,22 +16,25 @@ public class Medico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_medico;
+	
+	@Column(unique = true)
 	private String cpf_medico;
+	
 	private String nome_medico;
 	
-	@OneToOne
-	@JoinColumn(name="fk_id_especialidade")
-	private Especialidade id_especialidade;
+	@ManyToOne
+	@JoinColumn(name="fk_especialidade", unique = false)
+	private Especialidade especialidade;
 	
 	public Medico() {
 		
 	}
 
-	public Medico(String cpf_medico, String nome_medico, Especialidade id_especialidade) {
+	public Medico(String cpf_medico, String nome_medico, Especialidade especialidade) {
 		super();
 		this.cpf_medico = cpf_medico;
 		this.nome_medico = nome_medico;
-		this.id_especialidade = id_especialidade;
+		this.especialidade = especialidade;
 	}
 
 	public Long getId_medico() {
@@ -58,11 +62,11 @@ public class Medico {
 	}
 
 	public Especialidade getId_especialidade() {
-		return id_especialidade;
+		return especialidade;
 	}
 
-	public void setId_especialidade(Especialidade id_especialidade) {
-		this.id_especialidade = id_especialidade;
+	public void setId_especialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
 	}
 	
 	

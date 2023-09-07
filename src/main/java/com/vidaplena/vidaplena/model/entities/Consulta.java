@@ -26,16 +26,16 @@ public class Consulta {
 	private Medico id_medico;
 	
 	@OneToOne
-	@JoinColumn(name="fk_id_paciente")
-	private Paciente id_paciente;
+	@JoinColumn(name="fk_id_paciente", unique=false)
+	private Paciente paciente;
 	
 	public Consulta() {}
 	
-	public Consulta(Date data_consulta, Medico id_medico, Paciente id_paciente) {
+	public Consulta(Date data_consulta, Medico id_medico, Paciente paciente) {
 		super();
 		this.data_consulta = data_consulta;
 		this.id_medico = id_medico;
-		this.id_paciente = id_paciente;
+		this.paciente = paciente;
 	}
 
 	public Long getId_consulta() {
@@ -63,11 +63,11 @@ public class Consulta {
 	}
 
 	public Paciente getId_paciente() {
-		return id_paciente;
+		return paciente;
 	}
 
-	public void setId_paciente(Paciente id_paciente) {
-		this.id_paciente = id_paciente;
+	public void setId_paciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 	
 	
